@@ -2,10 +2,14 @@ name: taienv
 channels:
   - pytorch
   - conda-forge
+  - defaults
 dependencies:
   - python=3.10
-  - faiss-gpu
+  - faiss-cpu=1.7.4
   - pip
+  - setuptools
+  - libblas
+  - mkl
   - pip:
     - torch>=2.0
     - tokenizers>=0.14.0

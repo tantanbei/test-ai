@@ -26,8 +26,9 @@ generation_kwargs = dict(
     max_new_tokens=10000,
     streamer=streamer,
     do_sample=True,
-    temperature=0.6,
-    top_p=0.95
+    temperature=0.7,
+    top_p=0.95,
+    repetition_penalty=1.3  # 添加重复惩罚
 )
 
 # 在新线程中运行生成
