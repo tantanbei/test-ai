@@ -5,11 +5,12 @@ channels:
   - defaults
 dependencies:
   - python=3.10
-  - faiss-cpu=1.7.4
+  - faiss-cpu=1.7.3
   - pip
   - setuptools
   - libblas
   - mkl
+  - ipykernel
   - pip:
     - torch>=2.0
     - tokenizers>=0.14.0
@@ -19,4 +20,7 @@ dependencies:
     - pebble
     - timeout-decorator
     - attrdict
+    - langchain
+    - langchain-community
+    
 

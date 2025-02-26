@@ -1,1 +1,7 @@
 tool/dataroot/
+faiss_index/
+data/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
