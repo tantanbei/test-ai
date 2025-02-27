@@ -1,0 +1,149 @@
+
+# Rank算法粗排实时主题表（dl_cpc.lego_dws_algo_sketchy_rank）描述
+
+## 表名
+Rank算法粗排实时主题表（dl_cpc.lego_dws_algo_sketchy_rank）
+
+## 字段说明
+
+### 维度字段（共49个）
+1. **day**：天，分区字段。
+2. **hour**：小时，分区字段。
+3. **minute**：分钟，分区字段。
+4. **media_id**：媒体id，分区字段。
+5. **adslot_id**：栏位id，全局统一的广告栏位id。
+6. **user_id**：广告主用户id，全局统一的广告栏位id。
+7. **unit_id**：单元id，全局统一的广告栏位id。
+8. **ideaid**：创意id，全局统一的广告栏位id。
+9. **adslot_type**：栏位类型，1代表列表页，2代表详情页，3代表互动，4代表开屏，5代表横幅，6代表视频，7代表激励(应用商城)。
+10. **adtype**：创意类型，1代表文本，2代表大图，3代表图文，4代表三(组)图，5代表互动，6代表开屏，7代表横幅，8代表横版视频，9代表应用商城，10代表竖版视频，11代表激励视频，16代表试玩广告，17代表福利广告。
+11. **adclass**：adv原始行业id，具体见创意样式字典项。
+12. **ocpc_step**：OCPC阶段，0代表未启用ocpc，1代表第一阶段(cpc计价)，2代表第二阶段(ocpc计价)。
+13. **cvr_goal**：转化目标，具体见创意样式字典项。
+14. **is_new_unit**：单元创建天数，if (unit_create_days = 0, 1, 0)。
+15. **is_new_idea**：创意创建天数，if (idea_create_days = 0, 1, 0)。
+16. **adsrc**：广告来源，if (idea_create_days = 0, 1, 0)。
+17. **charge_type**：计费方式，0代表无展示，1代表CPC，2代表CPM，3代表CPA。
+18. **cpv_step**：命中视频播放，0代表未命中，1代表命中，2代表命中视频播放。
+19. **bs_ctr_model_name**：点击率模型名称。
+20. **bs_cvr_model_name**：转化率模型名称。
+21. **is_ocpm_mingtou**：是否ocpm明投。
+22. **deep_ocpc_step**：深度ocpc阶段。
+23. **deep_conversion_goal**：深度转化目标。
+24. **is_cold_start**：是否冷启动。
+25. **flow_stat_tag**：实时反馈流量统计情况。
+26. **cpa_check_priority**：成本考核优先级，1代表优先目标转化，2代表优选深度转化，3代表双目标转化均达标。
+27. **bid_pacing_factor**：深度双出价平滑因子。
+28. **plan_id**：广告计划id。
+29. **product_name**：产品名称。
+30. **cvr_event_adv**：优化退费率开关，0代表关闭，1代表打开，默认0关闭。
+31. **media_set_id**：媒体集id。
+32. **bidding_type**：竞价类型，-1代表默认值，1代表客户端竞价，2代表固定CPM。
+33. **return_hist**：竞价类型，-1代表默认值，1代表客户端竞价，2代表固定CPM。
+34. **put_type**：拉新、拉活，1代表拉新，2代表拉活。
+35. **adslot_pid**：物理栏位。
+36. **feature_type**：栏位特征，1代表小额提现，2代表宝箱，3代表应用商城，4代表抢归因，5代表非标栏位拉活，6代表列表页信息流，7代表详情页信息流，8代表互动广告，9代表横幅广告，10代表开屏广告，11代表阅读器，12代表激励视频，13代表插屏广告，14代表外部场景。
+37. **is_installed_laxin**：标记rta参竞并且已安装的拉新。
+38. **arpu**：标记rta参竞并且已安装的拉新，不去重累加，arpu/10后单位是分。
+39. **incr_show**：作为维度数据，incr_show=0是真实曝光数据，incr_show=1是incr_show数据。
+40. **arpu_model_name**：arpu模型名称。
+41. **call_up_model_name**：调起率模型名。
+42. **agent_info**：聚合预算。
+43. **bcl_opt_key**：深度补次留优化key。
+44. **hit_branch_label**：查询分支标记。
+45. **bsrawctr**：查询分支标记。
+46. **deeplink_triggered_num**：触发调起数。
+47. **deeplink_success_num**：触发成功数。
+48. **raw_call_up_q**：调起率预估值。
+49. **third_floor_price**：媒体成本，当媒体是外媒，即media_set_id = '187'时候才有媒体成本。
+
+### 指标字段（共50个）
+1. **iscv**：应扣，sum(if(conversion_goal=cvr_goal_ocpc,cvr_goal_ocpc_num,0))。
+2. **impression**：展现，sum(if(conversion_goal=cvr_goal_ocpc,cvr_goal_ocpc_num,0))。
+3. **click**：点击，sum(if(conversion_goal=cvr_goal_ocpc,cvr_goal_ocpc_num,0))。
+4. **cvr_num**：转化，sum(if(conversion_goal=cvr_goal_ocpc,cvr_goal_ocpc_num,0))。
+5. **origin_cost**：应扣，单位：分，2021-02-03 11:30 v2表为double类型。
+6. **bid**：出价，sum(click * bid_discounted_by_ad_slot)，2021-02-03 11:30 v2表为double类型。
+7. **click_givencpa_sum**：点击出价，sum(click * bid_ocpc)，2021-02-03 11:30 v2表为double类型。
+8. **cv_givencpa_sum**：转化出价，sum(iscv * bid_ocpc)，2021-02-03 11:30 v2表为double类型。
+9. **as_pctr_sum**：点击率预测，老口径：sum(show * exp_ctr)，新口径：sum((impression - impression * incr_show) * exp_ctr)，2021-02-03 11:30 v2表为double类型。
+10. **as_pcvr_sum**：转化率预测，sum(click * exp_cvr)，2021-02-03 11:30 v2表为double类型。
+11. **bs_pctr_sum**：点击率预测（备用），sum(show * bsctr)，2021-02-03 11:30 v2表为double类型。
+12. **bs_pcvr_sum**：转化率预测（备用），sum(click * bscvr)，2021-02-03 11:30 v2表为double类型。
+13. **bukuan_hidden_tax**：bukuan，单位：分，2021-02-03 11:30 v2表为double类型。
+14. **buliang_hidden_tax**：buliang，单位：分，2021-02-03 11:30 v2表为double类型。
+15. **real_click**：真实点击，单位：分，2021-02-03 11:30 v2表为double类型。
+16. **play_ten_second**：10秒播放，单位：分，2021-02-03 11:30 v2表为double类型。
+17. **as_rc_pcvr_sum**：真实点击转化率预测，sum(real_click * exp_cvr)，2021-03-09 15:00开始有数据。
+18. **bs_rc_pcvr_sum**：真实点击转化率预测（备用），sum(real_click * bscvr)，2021-03-09 15:00开始有数据。
+19. **as_raw_pcvr_sum**：原始转化率预测，sum(click * raw_cvr)，2021-03-09 15:00开始有数据。
+20. **as_rc_raw_pcvr_sum**：真实点击原始转化率预测，sum(real_click * raw_cvr)，2021-03-09 15:00开始有数据。
+21. **as_cali_pcvr_sum**：校准转化率预测，sum(click * cali_exp_cvr)，2021-03-09 15:00开始有数据。
+22. **as_rc_cali_pcvr_sum**：真实点击校准转化率预测，sum(real_click * cali_exp_cvr)，2021-03-09 15:00开始有数据。
+23. **rc_cali_cvr_sum**：校准转化率预测，sum(real_click * cali_cvr)，2021-07-06开始有数据。
+24. **deep_cvr_num**：深度转化量，sum(if(deep_conversion_goal=deep_cvr_goal_ocpc,deep_cvr_goal_ocpc_num,0))，2021-07-06开始有数据。
+25. **deep_cpa_sum**：深度转化聚合的深度给定成本，sum(deep_cpa * deep_cvr_goal_ocpc_num)，2021-07-06开始有数据。
+26. **deep_cali_cvr_sum**：转化聚合的深度校准预估值，sum(deep_cali_cvr * cvr_goal_ocpc_num)，2021-07-06开始有数据。
+27. **mid_exp_cvr_sum**：转化聚合的深度预估值，sum(real_click * mid_exp_cvr)，2021-07-06开始有数据。
+28. **pure_deep_exp_cvr_sum**：转化聚合的深度预估值，sum(pure_deep_cvr * cvr_goal_ocpc_num)，2021-07-06开始有数据。
+29. **show_gcpa_sum**：深度广告，深度预估出价，sum(impression * bid_ocpc)，2021-07-06开始有数据。
+30. **show_deep_gcpa_sum**：深度广告，深度预估出价，sum(impression * deep_cpa)，2021-07-06开始有数据。
+31. **show_deep_exp_cvr**：深度广告，深度预估出价，sum(impression * pure_deep_cvr)，2021-07-06开始有数据。
+32. **show_deep_cali_cvr**：深度广告，深度预估出价，sum(impression * deep_cali_cvr)，2021-07-06开始有数据。
+33. **show_exp_cvr**：深度广告，深度预估出价，sum(impression * cast(exp_ctr as BIGINT) * cast(exp_cvr as BIGINT))，2021-07-06开始有数据。
+34. **show_cali_cvr**：深度广告，深度预估出价，sum(impression * cast(exp_ctr as BIGINT) * cali_cvr)，2021-07-06开始有数据。
+35. **show_jfb_factor**：深度广告，深度预估出价，sum(impression * jfb_factor)，2021-07-06开始有数据。
+36. **click_jfb_factor**：深度广告，深度预估出价，sum(real_click * jfb_factor)，2021-07-06开始有数据。
+37. **as_rc_raw_pctr_sum**：深度广告，深度预估出价，sum(impression * raw_ctr)，2021-07-06开始有数据。
+38. **actual_cost**：深度广告，深度预估出价，sum(cast(actual_cost as DOUBLE)) + sum(if(adsrc not in (0, 1, 28)，case when charge_type=2 then cast(impression_price as DOUBLE)/1000.0 when charge_type=1 then cast(click_price as DOUBLE) when adsrc=4 then 0.0 else cast(impression_price as DOUBLE)/1000.0 end, 0.0))，2021-07-06开始有数据。
+39. **cali_ctr**：广告计划id，sum(cast(cali_ctr as BIGINT)*impression)，2021-07-06开始有数据。
+40. **third_floor_price**：媒体成本，当媒体是外媒，即media_set_id = '187'时候才有媒体成本，2021-07-06开始有数据。
+41. **cv_dpcvr_bucket_k**：产品名称，cast((cvr_goal_ocpc_num * deep_cali_cvr/1000) as INT)，2021-07-06开始有数据。
+42. **click_qcvr_bucket_k**：产品名称，cast((real_click * dislike_score*1000) as INT)，2021-07-06开始有数据。
+43. **refund_rate**：退费率，0代表关闭，1代表打开，默认0关闭，2021-07-06开始有数据。
+44. **cvr_event_adv_num**：退费率，0代表关闭，1代表打开，默认0关闭，2021-07-06开始有数据。
+45. **click_deepcpa_sum**：arpu模型名称，sum(click * deep_cpa)，2024-07-09 00:00:00开始有数据。
+46. **raw_arpu_q**：预估arpu，sum(real_click * raw_arpu_q)，2024-07-09 18:00开始有数据。
+47. **raw_call_up_q**：调起率预估值，sum(raw_call_up_q * IF(trace_type ='clkmagic2' AND trace_op1='DEEPLINK_TRIGGERED',1,0))，2024-11-26 00:00:00开始有数据。
+48. **deeplink_triggered_num**：触发调起数，SUM(IF(trace_type ='clkmagic2' AND trace_op1='DEEPLINK_TRIGGERED',1,0))，2024-11-26 00:00:00开始有数据。
+49. **deeplink_success_num**：触发成功数，SUM(IF(trace_type ='clkmagic2' AND trace_op1='DEEPLINK_SUCCESS',1,0))，2024-11-26 00:00:00开始有数据。
+50. **bsrawctr**：查询分支标记，sum(raw_call_up_q * IF(trace_type ='clkmagic2' AND trace_op1='DEEPLINK_TRIGGERED',1,0))，2024-11-26 00:00:00开始有数据。
+
+### 重要指标（共37个）
+1. **总收入**：ROUND(sum(origin_cost/100.0), 2)
+2. **CPC收入**：ROUND( sum( if( adsrc IN (1, 28), IF( charge_type = 3, cast(cv_givencpa_sum AS float), origin_cost ), 0 ) / 100.0 ), 2 )
+3. **DSP收入**：ROUND(sum(if(adsrc not in (1,28), origin_cost/100.0, 0)), 2)
+4. **cpagiven**：round(sum(if(ocpc_step>0, cv_givencpa_sum /100,0)) / sum(if(ocpc_step>0,cvr_num,0)), 4)
+5. **cpa**：round(sum(if(ocpc_step>0, origin_cost / 100.0,0)) / sum(if(ocpc_step>0,cvr_num,0)), 4)
+6. **cparatio**：round(sum(if(ocpc_step>0, origin_cost / 100.0,0))/sum(if(ocpc_step>0, cv_givencpa_sum /100,0)),4)
+7. **exp_pcoc**：ROUND(sum(if(ocpc_step>0, as_rc_pcvr_sum/1000000.0, 0)) /sum(if(ocpc_step>0,cvr_num,0)), 4)
+8. **raw_pcoc**：ROUND(sum(if(ocpc_step>0, as_rc_raw_pcvr_sum / 1000000.0,0)) / sum(if(ocpc_step>0,cvr_num,0)),4)
+9. **cali_pcoc**：ROUND(sum(if(ocpc_step>0, as_rc_cali_pcvr_sum / 1000000.0, 0)) / sum(if(ocpc_step>0,cvr_num,0)),4)
+10. **ctr_pcoc**：round(sum(as_pctr_sum/1000000.0) / sum(real_click),4)
+11. **cvr_fk**：round(sum(if(ocpc_step>0,cvr_num,0)) / sum(if(ocpc_step>0,click,0)),6)
+12. **ctr**：round(sum(real_click) / sum(impression),4)
+13. **cvr**：round(sum(if(ocpc_step>0,cvr_num,0)) / sum(if(ocpc_step>0, real_click,0)),6)
+14. **ctr_fk**：round(sum(click) / sum(impression),4)
+15. **cv**：sum(if(ocpc_step>0,cvr_num,0))
+16. **clicks**：sum(real_click)
+17. **show**：sum(impression)
+18. **clicks_fk**：sum(click)
+19. **ctr_pcoc_fk**：round(sum(as_pctr_sum / 1000000.0) / sum(click), 4)
+20. **tc**：round(sum(if(ocpc_step>0, cv_givencpa_sum/100,0)),2)
+21. **bs_cvr_pcoc**：round(sum(if(ocpc_step>0, bs_rc_pcvr_sum/ 1000000.0,0))/sum(if(ocpc_step>0,cvr_num,0)),4)
+22. **bs_ctr_pcoc**：round(sum(bs_pctr_sum/1000000.0) / sum(real_click),4)
+23. **rc_pcvr**：round(sum(if(ocpc_step>0, as_rc_raw_pcvr_sum / 1000000.0,0))/sum(if(ocpc_step>0 ,real_click,0)),6)
+24. **cpc_clicks**：sum(if(adsrc in (1,28), real_click, 0))
+25. **真实点击**：sum(real_click)
+26. **浅层转化数**：sum(cvr_num)
+27. **count**：COUNT(*)
+28. **raw_ctr_pcoc**：round(sum( as_rc_raw_pctr_sum/1000000.0) / sum( real_click), 4)
+29. **rc_ecvr**：round(sum(if(ocpc_step>0, as_rc_pcvr_sum / 1000000.0,0))/sum(if(ocpc_step>0,real_click,0)),6)
+30. **raw_exp_diff**：round(sum(if(ocpc_step>0, as_rc_raw_pcvr_sum / 1000000.0,0))/sum(if(ocpc_step>0 , as_rc_pcvr_sum / 1000000.0,0)),4)
+31. **bk_bl_ratio**：SUM(actual_cost) / SUM(cv_givencpa_sum)
+32. **总消耗**：ROUND(sum(origin_cost/100.0), 2)
+33. **趣盟利润**：ROUND(SUM(IF(media_set_id = '187', actual_cost*0.78, 0))/100, 2) - ROUND(SUM(IF(media_set_id='187', third_floor_price, 0))/100.0, 2)
+34. **趣盟成本**：ROUND(SUM(IF(media_set_id='187', third_floor_price, 0))/100.0, 2)
+35. **趣盟tc**：round(sum(if(ocpc_step>0 and media_set_id = '187', cv_givencpa_sum/100,0)),2)
+36. **趣盟tc利润**：round(sum(if(ocpc_step>0 and media_set_id = '187', cv_givencpa_sum/100 - third_floor_price/100,0)),2)
+37. **实际消耗**：ROUND( sum( if( adsrc IN (1, 28), IF( charge_type = 3, cast(cv_givencpa_sum AS float), origin_cost ), 0 ) / 100.0 ), 2 )
