@@ -22,5 +22,6 @@ dependencies:
     - attrdict
     - langchain
     - langchain-community
+    - pypdf
     
 
