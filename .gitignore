@@ -1,6 +1,7 @@
 tool/dataroot/
 faiss_index/
 data/
+env/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
