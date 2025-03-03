@@ -1,0 +1,7 @@
+name: open-webui
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - conda-forge
+dependencies:
+  - python=3.11
+prefix: /root/miniforge3/envs/open-webui
