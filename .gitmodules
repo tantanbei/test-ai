@@ -1,3 +1,10 @@
 [submodule "Wan2.1"]
 	path = Wan2.1
 	url = https://github.com/Wan-Video/Wan2.1.git
+[submodule "DeepSeek-V3"]
+        path = DeepSeek-V3
+        url = https://github.com/deepseek-ai/DeepSeek-V3.git
+[submodule "Wan2.1-mac-compatibility"]
+	path = Wan2.1-mac-compatibility
+	url = https://github.com/bakhti-ai/Wan2.1.git
+	branch = macos-compatibility

@@ -9,7 +9,8 @@ dependencies:
   - pip
   - setuptools
   - libblas
-  - mkl
+  - openblas
+  - nomkl
   - ipykernel
   - pip:
     - torch>=2.0

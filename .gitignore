@@ -2,6 +2,9 @@ tool/dataroot/
 faiss_index/
 data/
 env/
+models/
+
+.DS_Store
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
