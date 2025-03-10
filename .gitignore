@@ -3,6 +3,7 @@ faiss_index/
 data/
 env/
 models/
+output/
 
 .DS_Store
 

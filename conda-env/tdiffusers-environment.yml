@@ -1,0 +1,9 @@
+name: tdiffusersenv
+channels:
+  - defaults
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+dependencies:
+  - python=3.11
+  - jupyterlab
+prefix: /opt/anaconda3/envs/tdiffusersenv
