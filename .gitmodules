@@ -8,3 +8,9 @@
 	path = Wan2.1-mac-compatibility
 	url = https://github.com/bakhti-ai/Wan2.1.git
 	branch = macos-compatibility
+[submodule "diffusers"]
+	path = diffusers
+	url = https://github.com/huggingface/diffusers.git
+[submodule "ComfyUI-WanVideoWrapper"]
+	path = ComfyUI-WanVideoWrapper
+	url = https://github.com/kijai/ComfyUI-WanVideoWrapper.git
