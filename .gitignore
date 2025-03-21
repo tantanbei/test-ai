@@ -4,6 +4,7 @@ data/
 env/
 models/
 output/
+project/generate_data/generate_data_ad/output/
 
 .DS_Store
 

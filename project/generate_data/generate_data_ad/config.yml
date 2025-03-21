@@ -1,0 +1,51 @@
+aistudio_token : '{your_token}'      # 文心一言的token
+dashscope_api_key : 'sk-4e20d24149c64af1b75b6c850d16bf34' # 通义千问的api_key
+zhiouai_api_key : '{your_api_key}'   # 智谱AI的密钥
+
+# 星火大模型配置
+appid : "{}"       # 填写控制台中获取的 APPID 信息
+api_secret : "{}"  # 填写控制台中获取的 APISecret 信息
+api_key : "{}"     # 填写控制台中获取的 APIKey 信息
+
+
+# ... 其他配置保持不变 ...
+
+system : '现在你一个资深程序化广告专家，我有一些问题，请你用专业的知识帮我解决'
+job_description:
+    平台客户运营: 5
+    DSP运营: 5
+    平台客户产品: 4
+    DSP产品: 4
+    媒体流量产品: 4
+    广告模型算法: 4
+    广告机制算法: 4
+    广告检索开发: 3
+    广告平台开发: 3
+    平台销售: 2
+    媒体商务: 2
+    数据分析师: 2
+    实习生: 5
+    广告算法负责人: 1
+    广告开发负责人: 1
+    广告运营负责人: 1
+    DSP运营负责人: 1
+    广告策略产品: 3
+    广告模型产品: 3
+
+core_technology:
+    RTA: 4
+    RTB: 4
+    CPC: 2
+    OCPM: 5
+    OCPC: 1
+    CPM: 3
+    CPA: 2
+    ACP: 2
+    PCOC: 3
+    DPA: 2
+    人群包: 3
+    ctr预估: 5
+    cvr预估: 5
+    deep cvr预估: 5
+    ocpm成本控制: 5
+

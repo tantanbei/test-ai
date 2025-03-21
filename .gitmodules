@@ -14,3 +14,12 @@
 [submodule "ComfyUI-WanVideoWrapper"]
 	path = ComfyUI-WanVideoWrapper
 	url = https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+[submodule "ganloss-latent-space"]
+	path = ganloss-latent-space
+	url = https://github.com/amao2001/ganloss-latent-space.git
+[submodule "flux"]
+	path = flux
+	url = https://github.com/black-forest-labs/flux.git
+[submodule "fluxgym"]
+	path = fluxgym
+	url = https://github.com/cocktailpeanut/fluxgym.git
