@@ -33,7 +33,7 @@ def qwen_api(model_name, job_description, core_technology):
     )
 
     if response.status_code == HTTPStatus.OK:
-        if model_name == 'deepseek-r1':
+        if model_name.startswith('deepseek'):
             result = response.output.choices[0].message.content
         else:
             result = response.output.text
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     core_technology_w = list(tech_dict.values())
 
     conversation_lis = []
-    for i in tqdm(range(10)):
+    for i in tqdm(range(100)):
         one_conversation = {
             "conversation": []
         }

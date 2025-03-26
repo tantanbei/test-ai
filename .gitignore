@@ -5,6 +5,7 @@ env/
 models/
 output/
 project/generate_data/generate_data_ad/output/
+project/generate_t2i/
 
 .DS_Store
 
